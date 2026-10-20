@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e7">
+  <meta name="description" content="A local-first file tidy-up assistant. Let open-weight AI sort your loose downloads, then review every move before it happens.">
+  <title>SlothSort — Let the pile wait less</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="SlothSort home"><span class="mark">s</span> slothsort<span class="wordmark-dot">.</span></a>
+    <div class="topbar-right"><span class="privacy-pill"><span class="status-dot"></span><span id="runtime-label">Private by default</span></span><a class="top-link" href="README.md">How it works <span aria-hidden="true">↗</span></a></div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A tiny assistant for the big pile</p>
+        <h1 id="headline">Your files can<br><em>sort themselves.</em></h1>
+        <p class="hero-sub">One quiet pass through the downloads folder. A tidy plan to review. No need to remember what you downloaded three Tuesdays ago.</p>
+        <div class="hero-notes"><span><span class="note-check">✓</span> Runs on your machine</span><span><span class="note-check">✓</span> You approve every move</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="sun-disc"></div><div class="leaf leaf-one"></div><div class="leaf leaf-two"></div>
+        <div class="sloth-card"><div class="sloth-face"><span class="sloth-eye eye-left"></span><span class="sloth-eye eye-right"></span><span class="sloth-nose"></span><span class="sloth-smile"></span></div><span class="sloth-branch"></span><span class="sloth-caption">taking it<br>one file at a time</span></div>
+        <span class="spark spark-one">✳</span><span class="spark spark-two">✳</span><span class="floating-note">no rush<br>no mess</span>
+      </div>
+    </section>
+
+    <section class="workbench" aria-labelledby="workbench-title">
+      <div class="section-head">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> The tidy-up desk</p><h2 id="workbench-title">Start with a little pile.</h2></div>
+        <button class="text-button" id="sample-button" type="button"><span aria-hidden="true">✳</span> Try the sample pile</button>
+      </div>
+
+      <div class="path-panel" id="local-controls">
+        <label for="folder-path">Folder to scan</label>
+        <div class="path-row"><span class="path-icon" aria-hidden="true">⌂</span><input id="folder-path" type="text" autocomplete="off" spellcheck="false" placeholder="C:\Users\you\Downloads" aria-describedby="path-help"><button id="scan-button" class="button button-dark" type="button">Take a look <span aria-hidden="true">→</span></button></div>
+        <div class="path-foot"><p id="path-help">Top level only. SlothSort reads filenames and file details, never file contents.</p><label class="model-label" for="model-select">Local model <select id="model-select" aria-label="Choose an installed local model"><option value="">Checking Ollama…</option></select></label></div>
+      </div>
+
+      <div class="hosted-note" id="hosted-note" hidden><div class="hosted-mark">✳</div><div><strong>This is a sample pile.</strong><p>For your own folders, run SlothSort on your computer with Ollama. Nothing you enter here is uploaded.</p></div><a href="README.md#run-it-locally" class="button button-dark">Run it locally <span aria-hidden="true">↗</span></a></div>
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+
+      <div class="results" id="results" hidden>
+        <div class="results-head"><div><p class="eyebrow" id="result-eyebrow">Your proposed plan</p><h3 id="results-title">A little less pile.</h3></div><span class="result-count" id="result-count"></span></div>
+        <div class="table-wrap"><table><thead><tr><th class="check-col"><span class="sr-only">Include</span></th><th>FROM</th><th>TO</th><th>WHY</th></tr></thead><tbody id="file-rows"></tbody></table></div>
+        <div class="results-foot"><p><span class="shield-icon">⌑</span><span id="footnote">Nothing moves until you say so.</span></p><div class="result-actions"><button class="button button-light" id="undo-button" type="button" hidden>Undo last tidy-up</button><button class="button button-dark" id="apply-button" type="button">Tidy selected <span aria-hidden="true">→</span></button></div></div>
+      </div>
+      <div class="empty-state" id="empty-state"><div class="empty-stamp">✳</div><p>Nothing to do yet. That’s a nice place to start.</p><span>Pick a folder or try the sample pile.</span></div>
+    </section>
+
+    <section class="how-section" aria-label="How SlothSort works">
+      <div class="how-intro"><p class="eyebrow"><span class="eyebrow-line"></span> Slow is a feature</p><h2>Less dragging.<br><em>More done.</em></h2><p>SlothSort is a small local assistant for the little jobs we keep putting off.</p></div>
+      <div class="steps"><article class="step"><span class="step-num">01</span><div><h3>Point at the pile</h3><p>Choose a folder. SlothSort looks at the files directly inside it, no deep dive.</p></div><span class="step-art step-folder" aria-hidden="true">▰</span></article><article class="step"><span class="step-num">02</span><div><h3>Let Gemma think</h3><p>An open-weight model on your own machine suggests calmer names and sensible places.</p></div><span class="step-art step-spark" aria-hidden="true">✳</span></article><article class="step"><span class="step-num">03</span><div><h3>Keep the final say</h3><p>Review, untick anything you want to keep put, then tidy or undo the last pass.</p></div><span class="step-art step-check" aria-hidden="true">✓</span></article></div>
+    </section>
+
+    <footer class="footer"><a class="wordmark" href="#top"><span class="mark">s</span> slothsort<span class="wordmark-dot">.</span></a><span>Open source · local first · take your time</span><a href="https://github.com/vibhanshu-s/slothsort" id="repo-link">See the source ↗</a></footer>
+  </main>
+  <script src="app.js?v=1" defer></script>
+</body>
+</html>
